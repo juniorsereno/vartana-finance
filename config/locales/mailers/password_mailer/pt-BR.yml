@@ -1,0 +1,9 @@
+---
+pt-BR:
+  password_mailer:
+    reset_password:
+      subject: "Redefinir sua senha"
+      body: "Você está recebendo este e-mail porque foi solicitado redefinir a senha da sua conta. Use o link abaixo para redefinir sua senha:"
+      link: "Redefinir senha"
+      greeting: "Olá"
+      signature: "Atenciosamente, Equipe Maybe"

@@ -7,6 +7,41 @@ pt-BR:
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
+    models:
+      account:
+        one: Conta
+        other: Contas
+      transaction:
+        one: Transação
+        other: Transações
+      transfer:
+        one: Transferência
+        other: Transferências
+      category:
+        one: Categoria
+        other: Categorias
+      investment:
+        one: Investimento
+        other: Investimentos
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      account:
+        name: Nome
+        balance: Saldo
+        currency: Moeda
+        classification: Classificação
+      transaction:
+        amount: Valor
+        date: Data
+        description: Descrição
+        category: Categoria
+      user:
+        email: E-mail
+        name: Nome
+        password: Senha
+        password_confirmation: Confirmação de senha
   date:
     abbr_day_names:
     - dom

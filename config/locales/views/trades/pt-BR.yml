@@ -1,0 +1,38 @@
+---
+pt-BR:
+  trades:
+    form:
+      account: Conta de transferência (opcional)
+      account_prompt: Pesquisar conta
+      amount: Valor
+      holding: Símbolo do ticker
+      price: Preço por ação
+      qty: Quantidade
+      submit: Adicionar transação
+      ticker_placeholder: PETR4
+      type: Tipo
+    header:
+      buy: Comprar
+      current_market_price_label: Preço Atual de Mercado
+      overview: Visão geral
+      purchase_price_label: Preço de Compra
+      purchase_qty_label: Quantidade Comprada
+      sell: Vender
+      symbol_label: Símbolo
+      total_return_label: Ganho/perda não realizado
+    new:
+      title: Nova transação
+    show:
+      additional: Adicional
+      cost_per_share_label: Custo por Ação
+      date_label: Data
+      delete: Excluir
+      delete_subtitle: Esta ação não pode ser desfeita
+      delete_title: Excluir Negociação
+      details: Detalhes
+      exclude_subtitle: Esta negociação não será incluída em relatórios e cálculos
+      exclude_title: Excluir das análises
+      note_label: Observação
+      note_placeholder: Adicione quaisquer observações adicionais aqui...
+      quantity_label: Quantidade
+      settings: Configurações

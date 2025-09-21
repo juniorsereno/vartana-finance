@@ -1,0 +1,88 @@
+---
+pt-BR:
+  import:
+    cleans:
+      show:
+        description: Edite seus dados na tabela abaixo. Células vermelhas são inválidas.
+        errors_notice: Você tem erros em seus dados. Passe o mouse sobre o erro para ver
+          detalhes.
+        errors_notice_mobile: Você tem erros em seus dados. Toque no tooltip do erro para ver
+          detalhes.
+        title: Limpar seus dados
+    configurations:
+      mint_import:
+        date_format_label: Formato da data
+      show:
+        description: Selecione as colunas que correspondem a cada campo em seu CSV.
+        title: Configurar sua importação
+      trade_import:
+        date_format_label: Formato da data
+      transaction_import:
+        date_format_label: Formato da data
+    confirms:
+      mappings:
+        create_account: Criar conta
+        csv_mapping_label: "%{mapping} no CSV"
+        maybe_mapping_label: "%{mapping} no Maybe"
+        no_accounts: Você ainda não tem contas. Crie uma conta que podemos usar para linhas (não atribuídas) em seu CSV ou volte para a etapa Limpar e forneça um nome de conta que possamos usar.
+        rows_label: Linhas
+        unassigned_account: Precisa criar uma nova conta para linhas não atribuídas?
+      show:
+        account_mapping_description: Atribua todas as contas do seu arquivo importado para
+          as contas existentes do Maybe. Você também pode adicionar novas contas ou deixá-las
+          sem categoria.
+        account_mapping_title: Atribuir suas contas
+        account_type_mapping_description: Atribua todos os tipos de conta do seu arquivo importado para
+          os tipos do Maybe
+        account_type_mapping_title: Atribuir seus tipos de conta
+        category_mapping_description: Atribua todas as categorias do seu arquivo importado para
+          as categorias existentes do Maybe. Você também pode adicionar novas categorias ou deixá-las
+          sem categoria.
+        category_mapping_title: Atribuir suas categorias
+        tag_mapping_description: Atribua todas as tags do seu arquivo importado para
+          as tags existentes do Maybe. Você também pode adicionar novas tags ou deixá-las
+          sem categoria.
+        tag_mapping_title: Atribuir suas tags
+    uploads:
+      show:
+        description: Cole ou faça upload do seu arquivo CSV abaixo. Por favor, revise as instruções
+          na tabela abaixo antes de começar.
+        instructions_1: Abaixo está um exemplo de CSV com colunas disponíveis para importação.
+        instructions_2: Seu CSV deve ter uma linha de cabeçalho
+        instructions_3: Você pode nomear suas colunas como quiser. Você as mapeará
+          em uma etapa posterior.
+        instructions_4: Colunas marcadas com um asterisco (*) são dados obrigatórios.
+        instructions_5: Sem vírgulas, sem símbolos de moeda e sem parênteses nos números.
+        title: Importar seus dados
+  imports:
+    empty:
+      message: Nenhuma importação ainda.
+      new: Nova importação
+    import:
+      complete: Completo
+      delete: Excluir
+      failed: Falhou
+      in_progress: Em progresso
+      label: "%{type}: %{datetime}"
+      revert_failed: Reverter falhou
+      reverting: Revertendo
+      uploading: Processando linhas
+      view: Ver
+    index:
+      imports: Importações
+      new: Nova importação
+      title: Importações
+    new:
+      description: Você pode importar vários tipos de dados manualmente via CSV ou usar um
+        de nossos templates de importação como Mint.
+      import_accounts: Importar contas
+      import_mint: Importar do Mint
+      import_portfolio: Importar investimentos
+      import_transactions: Importar transações
+      resume: Retomar %{type}
+      sources: Fontes
+      title: Nova Importação CSV
+    ready:
+      description: Aqui está um resumo dos novos itens que serão adicionados à sua conta
+        assim que você publicar esta importação.
+      title: Confirmar dados da importação
