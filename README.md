@@ -1,25 +1,24 @@
-
 <img width="1190" alt="maybe_hero" src="https://github.com/user-attachments/assets/5ed08763-a9ee-42b2-a436-e05038fcf573" />
 
-# Maybe: The personal finance app for everyone
+# Vartana Finance: The personal finance app for everyone
 
-> [!IMPORTANT]
-> This repository is no longer actively maintained. You can read more about this in our [final release](https://github.com/maybe-finance/maybe/releases/tag/v0.6.0).
+> [!NOTE]
+> This is a fork of the original Maybe Finance project, which is no longer actively maintained. This fork is based on Maybe Finance but is **not affiliated with or endorsed by** Maybe Finance Inc. You can read more about the original project in their [final release](https://github.com/maybe-finance/maybe/releases/tag/v0.6.0).
 
-## Maybe Hosting
+## Vartana Finance Hosting
 
-Maybe is a fully working personal finance app that can be [self hosted with Docker](docs/hosting/docker.md).
+Vartana Finance is a fully working personal finance app that can be [self hosted with Docker](docs/hosting/docker.md).
 
 ## Forking and Attribution
 
-This repo is no longer maintained. You’re free to fork it under the AGPLv3. To stay compliant and avoid trademark issues:
+The original repo is no longer maintained. You’re free to fork it under the AGPLv3. To stay compliant and avoid trademark issues:
 
 - Be sure to include the original [AGPLv3 license](https://github.com/maybe-finance/maybe/blob/main/LICENSE) and clearly state in your README that your fork is based on Maybe Finance but is **not affiliated with or endorsed by** Maybe Finance Inc.
-- "Maybe" is a trademark of Maybe Finance Inc. and therefore, use of it is NOT allowed in forked repositories (or the logo)
+- "Maybe" is a trademark of Maybe Finance Inc. and therefore, use of it is NOT allowed in forked repositories (or the logo). This fork uses "Vartana Finance" instead.
 
 ## Local Development Setup
 
-**If you are trying to _self-host_ the Maybe app, stop here. You
+**If you are trying to _self-host_ the Vartana Finance app, stop here. You
 should [read this guide to get started](docs/hosting/docker.md).**
 
 The instructions below are for developers to get started with contributing to the app.
@@ -32,7 +31,7 @@ The instructions below are for developers to get started with contributing to th
 After cloning the repo, the basic setup commands are:
 
 ```sh
-cd maybe
+cd vartana-finance
 cp .env.local.example .env.local
 bin/setup
 bin/dev
@@ -58,6 +57,5 @@ For further instructions, see guides below.
 
 ## Copyright & license
 
-Maybe is distributed under
-an [AGPLv3 license](https://github.com/maybe-finance/maybe/blob/main/LICENSE). "
-Maybe" is a trademark of Maybe Finance, Inc.
+Vartana Finance is distributed under
+an [AGPLv3 license](https://github.com/maybe-finance/maybe/blob/main/LICENSE). The original "Maybe" is a trademark of Maybe Finance, Inc.
