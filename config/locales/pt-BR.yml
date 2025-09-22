@@ -184,3 +184,7 @@ pt-BR:
     reset:
       unauthorized: "Você não tem autorização para realizar esta ação"
       success: "Sua conta foi redefinida. Os dados serão excluídos em segundo plano em breve."
+
+  categories:
+    new:
+      new_category: "Nova categoria"
