@@ -18,7 +18,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       end
 
       # Trigger Capybara's wait mechanism to avoid timing issues with logins
-      find("h1", text: "Bem-vindo de volta, #{user.first_name}")
+      assert_current_path root_path
     end
 
     def login_as(user)

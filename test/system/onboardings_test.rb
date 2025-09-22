@@ -184,9 +184,9 @@ class OnboardingsTest < ApplicationSystemTestCase
     def sign_in(user)
       visit new_session_path
       within "form" do
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user_password_test
-        click_on "Log in"
+        fill_in "email", with: user.email
+        fill_in "password", with: user_password_test
+        click_on "Entrar"
       end
 
       # Wait for successful login
