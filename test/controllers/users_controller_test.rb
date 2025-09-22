@@ -28,7 +28,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_redirected_to settings_profile_url
-    assert_equal "Seu perfil foi atualizado.", flash[:notice]
+    assert_equal "Your profile has been updated.", flash[:notice]
   end
 
   test "admin can reset family data" do
@@ -47,7 +47,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to settings_profile_url
-    assert_equal I18n.t("users.reset.success"), flash[:notice]
+    assert_equal "Sua conta foi redefinida. Os dados serão excluídos em segundo plano em breve.", flash[:notice]
 
     assert_not Account.exists?(account.id)
     assert_not Category.exists?(category.id)
@@ -64,7 +64,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     delete reset_user_url(@member)
 
     assert_redirected_to settings_profile_url
-    assert_equal I18n.t("users.reset.unauthorized"), flash[:alert]
+    assert_equal "Você não tem autorização para realizar esta ação", flash[:alert]
     assert_no_enqueued_jobs only: FamilyResetJob
   end
 

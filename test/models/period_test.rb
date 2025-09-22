@@ -6,8 +6,8 @@ class PeriodTest < ActiveSupport::TestCase
       Period.new(start_date: nil, end_date: nil)
     end
 
-    assert_includes error.message, "Start date can't be blank"
-    assert_includes error.message, "End date can't be blank"
+    assert_includes error.message, "Start date não pode ficar em branco"
+    assert_includes error.message, "End date não pode ficar em branco"
   end
 
   test "raises validation error when start_date is not before end_date" do

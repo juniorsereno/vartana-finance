@@ -30,7 +30,7 @@ class Settings::ProfilesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to settings_profile_path
-    assert_equal I18n.t("settings.profiles.destroy.cannot_remove_self"), flash[:alert]
+    assert_equal "You cannot remove yourself from the account.", flash[:alert]
     assert User.find(@admin.id)
   end
 
@@ -41,7 +41,7 @@ class Settings::ProfilesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to settings_profile_path
-    assert_equal I18n.t("settings.profiles.destroy.not_authorized"), flash[:alert]
+    assert_equal "You are not authorized to remove members.", flash[:alert]
     assert User.find(@admin.id)
   end
 
