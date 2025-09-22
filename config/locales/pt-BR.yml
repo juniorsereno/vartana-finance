@@ -179,3 +179,8 @@ pt-BR:
       restrict_dependent_destroy:
         one: "Não é possível excluir %{record} porque existe %{count} registro dependente"
         many: "Não é possível excluir %{record} porque existem %{count} registros dependentes"
+
+  users:
+    reset:
+      unauthorized: "Você não tem autorização para realizar esta ação"
+      success: "Sua conta foi redefinida. Os dados serão excluídos em segundo plano em breve."

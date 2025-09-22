@@ -87,7 +87,7 @@ class MoneyTest < ActiveSupport::TestCase
   test "can format" do
     assert_equal "$1,000.90", Money.new(1000.899).to_s
     assert_equal "€1.000,12", Money.new(1000.12, :eur).to_s
-    assert_equal "€ 1.000,12", Money.new(1000.12, :eur).format(locale: :pt)
+    assert_equal "€ 1.000,12", Money.new(1000.12, :eur).format(locale: :'pt-BR')
   end
 
   test "converts currency when rate available" do
