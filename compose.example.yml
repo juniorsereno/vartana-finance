@@ -75,7 +75,7 @@ services:
       - maybe_net
 
   db:
-    image: postgres:16
+    image: postgres:17
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data
@@ -90,7 +90,7 @@ services:
       - maybe_net
 
   redis:
-    image: redis:latest
+    image: redis:7
     restart: unless-stopped
     volumes:
       - redis-data:/data
