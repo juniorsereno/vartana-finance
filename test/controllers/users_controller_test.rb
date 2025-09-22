@@ -28,7 +28,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_redirected_to settings_profile_url
-    assert_equal "Your profile has been updated.", flash[:notice]
+    assert_equal "Seu perfil foi atualizado.", flash[:notice]
   end
 
   test "admin can reset family data" do

@@ -22,6 +22,6 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "$3.00 | -€7.00", totals_by_currency(collection: [ @account1, @account2, @account3 ], money_method: :balance_money)
     assert_equal "", totals_by_currency(collection: [], money_method: :balance_money)
     assert_equal "$0.00", totals_by_currency(collection: [ Account.new(currency: "USD", balance: 0) ], money_method: :balance_money)
-    assert_equal "-$3.00 | €7.00", totals_by_currency(collection: [ @account1, @account2, @account3 ], money_method: :balance_money, negate: true)
+    assert_equal "-$3.00 | €7,00", totals_by_currency(collection: [ @account1, @account2, @account3 ], money_method: :balance_money, negate: true)
   end
 end

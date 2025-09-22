@@ -22,7 +22,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "fails to sign in with bad password" do
     post sessions_url, params: { email: @user.email, password: "bad" }
     assert_response :unprocessable_entity
-    assert_equal "Invalid email or password.", flash[:alert]
+    assert_equal "E-mail ou senha inválidos.", flash[:alert]
   end
 
   test "can sign out" do
