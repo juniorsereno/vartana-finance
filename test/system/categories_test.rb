@@ -7,7 +7,7 @@ class CategoriesTest < ApplicationSystemTestCase
 
   test "can create category" do
     visit categories_url
-    click_link "Novo"
+    find("a[href='#{new_category_path}']").click
     fill_in "Name", with: "My Shiny New Category"
     click_button "Create Category"
 
@@ -17,7 +17,7 @@ class CategoriesTest < ApplicationSystemTestCase
 
   test "trying to create a duplicate category fails" do
     visit categories_url
-    click_link "Novo"
+    find("a[href='#{new_category_path}']").click
     fill_in "Name", with: categories(:food_and_drink).name
     click_button "Create Category"
 
