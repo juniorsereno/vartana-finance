@@ -32,40 +32,44 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can reset family data" do
-    account = accounts(:investment)
-    category = categories(:income)
-    tag = tags(:one)
-    merchant = merchants(:netflix)
-    import = imports(:transaction)
-    budget = budgets(:one)
-    plaid_item = plaid_items(:one)
+    I18n.with_locale(:'pt-BR') do
+      account = accounts(:investment)
+      category = categories(:income)
+      tag = tags(:one)
+      merchant = merchants(:netflix)
+      import = imports(:transaction)
+      budget = budgets(:one)
+      plaid_item = plaid_items(:one)
 
-    Provider::Plaid.any_instance.expects(:remove_item).with(plaid_item.access_token).once
+      Provider::Plaid.any_instance.expects(:remove_item).with(plaid_item.access_token).once
 
-    perform_enqueued_jobs(only: FamilyResetJob) do
-      delete reset_user_url(@user)
+      perform_enqueued_jobs(only: FamilyResetJob) do
+        delete reset_user_url(@user)
+      end
+
+      assert_redirected_to settings_profile_url
+      assert_equal "Sua conta foi redefinida. Os dados serão excluídos em segundo plano em breve.", flash[:notice]
+
+      assert_not Account.exists?(account.id)
+      assert_not Category.exists?(category.id)
+      assert_not Tag.exists?(tag.id)
+      assert_not Merchant.exists?(merchant.id)
+      assert_not Import.exists?(import.id)
+      assert_not Budget.exists?(budget.id)
+      assert_not PlaidItem.exists?(plaid_item.id)
     end
-
-    assert_redirected_to settings_profile_url
-    assert_equal "Sua conta foi redefinida. Os dados serão excluídos em segundo plano em breve.", flash[:notice]
-
-    assert_not Account.exists?(account.id)
-    assert_not Category.exists?(category.id)
-    assert_not Tag.exists?(tag.id)
-    assert_not Merchant.exists?(merchant.id)
-    assert_not Import.exists?(import.id)
-    assert_not Budget.exists?(budget.id)
-    assert_not PlaidItem.exists?(plaid_item.id)
   end
 
   test "non-admin cannot reset family data" do
-    sign_in @member = users(:family_member)
+    I18n.with_locale(:'pt-BR') do
+      sign_in @member = users(:family_member)
 
-    delete reset_user_url(@member)
+      delete reset_user_url(@member)
 
-    assert_redirected_to settings_profile_url
-    assert_equal "Você não tem autorização para realizar esta ação", flash[:alert]
-    assert_no_enqueued_jobs only: FamilyResetJob
+      assert_redirected_to settings_profile_url
+      assert_equal "Você não tem autorização para realizar esta ação", flash[:alert]
+      assert_no_enqueued_jobs only: FamilyResetJob
+    end
   end
 
   test "member can deactivate their account" do
