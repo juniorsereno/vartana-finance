@@ -9,8 +9,7 @@ class CategoriesTest < ApplicationSystemTestCase
     visit categories_url
     find("a[href='#{new_category_path}']").click
     fill_in "Name", with: "My Shiny New Category"
-    find_field("Name").send_keys(:tab)
-    click_button "Create Category"
+    click_button "Create Category", disabled: false
 
     visit categories_url
     assert_text "My Shiny New Category"
@@ -20,8 +19,7 @@ class CategoriesTest < ApplicationSystemTestCase
     visit categories_url
     find("a[href='#{new_category_path}']").click
     fill_in "Name", with: categories(:food_and_drink).name
-    find_field("Name").send_keys(:tab)
-    click_button "Create Category"
+    click_button "Create Category", disabled: false
 
     assert_text "Name has already been taken"
   end
