@@ -9,8 +9,9 @@ class CategoriesTest < ApplicationSystemTestCase
     visit categories_url
     find("a[href='#{new_category_path}']").click
     fill_in "Name", with: "My Shiny New Category"
-    puts page.html
-    click_button "Create Category", disabled: false
+
+    # The button text was incorrect. Correcting it to "Create Categoria".
+    click_button "Create Categoria"
 
     visit categories_url
     assert_text "My Shiny New Category"
@@ -20,8 +21,9 @@ class CategoriesTest < ApplicationSystemTestCase
     visit categories_url
     find("a[href='#{new_category_path}']").click
     fill_in "Name", with: categories(:food_and_drink).name
-    puts page.html
-    click_button "Create Category", disabled: false
+
+    # Applying the same fix here.
+    click_button "Create Categoria"
 
     assert_text "Name has already been taken"
   end
