@@ -20,12 +20,14 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create tag" do
-    assert_difference("Tag.count") do
-      post tags_url, params: { tag: { name: "Test Tag" } }
-    end
+    I18n.with_locale(:en) do
+      assert_difference("Tag.count") do
+        post tags_url, params: { tag: { name: "Test Tag" } }
+      end
 
-    assert_redirected_to tags_url
-    assert_equal "Tag created", flash[:notice]
+      assert_redirected_to tags_url
+      assert_equal "Tag created", flash[:notice]
+    end
   end
 
   test "should get edit" do
@@ -34,9 +36,11 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tag" do
-    patch tag_url(tags.first), params: { tag: { name: "Test Tag" } }
+    I18n.with_locale(:en) do
+      patch tag_url(tags.first), params: { tag: { name: "Test Tag" } }
 
-    assert_redirected_to tags_url
-    assert_equal "Tag updated", flash[:notice]
+      assert_redirected_to tags_url
+      assert_equal "Tag updated", flash[:notice]
+    end
   end
 end

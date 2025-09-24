@@ -18,9 +18,11 @@ class OnboardingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get preferences" do
-    get preferences_onboarding_url
-    assert_response :success
-    assert_select "h1", text: /preferences/i
+    I18n.with_locale(:en) do
+      get preferences_onboarding_url
+      assert_response :success
+      assert_select "h1", text: /preferences/i
+    end
   end
 
   test "preferences page renders Series chart data without errors" do

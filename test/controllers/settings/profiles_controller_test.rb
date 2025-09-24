@@ -25,24 +25,28 @@ class Settings::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test "admin cannot remove themselves" do
     sign_in @admin
-    assert_no_difference("User.count") do
-      delete settings_profile_path(user_id: @admin)
-    end
+    I18n.with_locale(:en) do
+      assert_no_difference("User.count") do
+        delete settings_profile_path(user_id: @admin)
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal "You cannot remove yourself from the account.", flash[:alert]
-    assert User.find(@admin.id)
+      assert_redirected_to settings_profile_path
+      assert_equal "You cannot remove yourself from the account.", flash[:alert]
+      assert User.find(@admin.id)
+    end
   end
 
   test "non-admin cannot remove members" do
     sign_in @member
-    assert_no_difference("User.count") do
-      delete settings_profile_path(user_id: @admin)
-    end
+    I18n.with_locale(:en) do
+      assert_no_difference("User.count") do
+        delete settings_profile_path(user_id: @admin)
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal "You are not authorized to remove members.", flash[:alert]
-    assert User.find(@admin.id)
+      assert_redirected_to settings_profile_path
+      assert_equal "You are not authorized to remove members.", flash[:alert]
+      assert User.find(@admin.id)
+    end
   end
 
   test "admin removing a family member also destroys their invitation" do

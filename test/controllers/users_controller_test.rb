@@ -11,24 +11,26 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "can update user profile" do
-    patch user_url(@user), params: {
-      user: {
-        first_name: "John",
-        last_name: "Doe",
-        onboarded_at: Time.current,
-        profile_image: file_fixture_upload("profile_image.png", "image/png", :binary),
-        family_attributes: {
-          name: "New Family Name",
-          country: "US",
-          date_format: "%m/%d/%Y",
-          currency: "USD",
-          locale: "en"
+    I18n.with_locale(:en) do
+      patch user_url(@user), params: {
+        user: {
+          first_name: "John",
+          last_name: "Doe",
+          onboarded_at: Time.current,
+          profile_image: file_fixture_upload("profile_image.png", "image/png", :binary),
+          family_attributes: {
+            name: "New Family Name",
+            country: "US",
+            date_format: "%m/%d/%Y",
+            currency: "USD",
+            locale: "en"
+          }
         }
       }
-    }
 
-    assert_redirected_to settings_profile_url
-    assert_equal "Your profile has been updated.", flash[:notice]
+      assert_redirected_to settings_profile_url
+      assert_equal "Your profile has been updated.", flash[:notice]
+    end
   end
 
   test "admin can reset family data" do

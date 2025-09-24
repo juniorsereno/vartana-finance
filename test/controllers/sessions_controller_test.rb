@@ -29,9 +29,11 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     session_record = @user.sessions.last
 
-    delete session_url(session_record)
-    assert_redirected_to new_session_path
-    assert_equal "You have signed out successfully.", flash[:notice]
+    I18n.with_locale(:en) do
+      delete session_url(session_record)
+      assert_redirected_to new_session_path
+      assert_equal "You have signed out successfully.", flash[:notice]
+    end
 
     # Verify session is destroyed
     assert_nil Session.find_by(id: session_record.id)

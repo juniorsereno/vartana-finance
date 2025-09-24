@@ -7,35 +7,39 @@ class PlaidItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create" do
-    @plaid_provider = mock
-    Provider::Registry.expects(:plaid_provider_for_region).with("us").returns(@plaid_provider)
+    I18n.with_locale(:en) do
+      @plaid_provider = mock
+      Provider::Registry.expects(:plaid_provider_for_region).with("us").returns(@plaid_provider)
 
-    public_token = "public-sandbox-1234"
+      public_token = "public-sandbox-1234"
 
-    @plaid_provider.expects(:exchange_public_token).with(public_token).returns(
-      OpenStruct.new(access_token: "access-sandbox-1234", item_id: "item-sandbox-1234")
-    )
+      @plaid_provider.expects(:exchange_public_token).with(public_token).returns(
+        OpenStruct.new(access_token: "access-sandbox-1234", item_id: "item-sandbox-1234")
+      )
 
-    assert_difference "PlaidItem.count", 1 do
-      post plaid_items_url, params: {
-        plaid_item: {
-          public_token: public_token,
-          region: "us",
-          metadata: { institution: { name: "Plaid Item Name" } }
+      assert_difference "PlaidItem.count", 1 do
+        post plaid_items_url, params: {
+          plaid_item: {
+            public_token: public_token,
+            region: "us",
+            metadata: { institution: { name: "Plaid Item Name" } }
+          }
         }
-      }
-    end
+      end
 
-    assert_equal "Account linked successfully.  Please wait for accounts to sync.", flash[:notice]
-    assert_redirected_to accounts_path
+      assert_equal "Account linked successfully.  Please wait for accounts to sync.", flash[:notice]
+      assert_redirected_to accounts_path
+    end
   end
 
   test "destroy" do
-    delete plaid_item_url(plaid_items(:one))
+    I18n.with_locale(:en) do
+      delete plaid_item_url(plaid_items(:one))
 
-    assert_equal "Accounts scheduled for deletion.", flash[:notice]
-    assert_enqueued_with job: DestroyJob
-    assert_redirected_to accounts_path
+      assert_equal "Accounts scheduled for deletion.", flash[:notice]
+      assert_enqueued_with job: DestroyJob
+      assert_redirected_to accounts_path
+    end
   end
 
   test "sync" do

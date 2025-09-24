@@ -33,19 +33,21 @@ class ImpersonationSessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_nil super_admin_session.active_impersonator_session
 
-    # Joining the session
-    post join_impersonation_sessions_path, params: { impersonation_session_id: impersonator_session.id }
-    assert_equal impersonator_session, super_admin_session.reload.active_impersonator_session
-    assert_equal "Joined session", flash[:notice]
-    assert_redirected_to root_path
+    I18n.with_locale(:en) do
+      # Joining the session
+      post join_impersonation_sessions_path, params: { impersonation_session_id: impersonator_session.id }
+      assert_equal impersonator_session, super_admin_session.reload.active_impersonator_session
+      assert_equal "Joined session", flash[:notice]
+      assert_redirected_to root_path
 
-    follow_redirect!
+      follow_redirect!
 
-    # Leaving the session
-    delete leave_impersonation_sessions_path
-    assert_nil super_admin_session.reload.active_impersonator_session
-    assert_equal "Left session", flash[:notice]
-    assert_redirected_to root_path
+      # Leaving the session
+      delete leave_impersonation_sessions_path
+      assert_nil super_admin_session.reload.active_impersonator_session
+      assert_equal "Left session", flash[:notice]
+      assert_redirected_to root_path
+    end
 
     # Impersonation session still in progress because nobody has ended it yet
     assert_equal "in_progress", impersonator_session.reload.status
@@ -69,11 +71,13 @@ class ImpersonationSessionsControllerTest < ActionDispatch::IntegrationTest
 
     impersonator_session = impersonation_sessions(:in_progress)
 
-    put complete_impersonation_session_path(impersonator_session)
+    I18n.with_locale(:en) do
+      put complete_impersonation_session_path(impersonator_session)
 
-    assert_equal "Session completed", flash[:notice]
-    assert_equal "complete", impersonator_session.reload.status
-    assert_redirected_to root_path
+      assert_equal "Session completed", flash[:notice]
+      assert_equal "complete", impersonator_session.reload.status
+      assert_redirected_to root_path
+    end
   end
 
   test "super admin cannot accept an impersonation session" do
@@ -91,11 +95,13 @@ class ImpersonationSessionsControllerTest < ActionDispatch::IntegrationTest
 
     impersonator_session = impersonation_sessions(:in_progress)
 
-    put approve_impersonation_session_path(impersonator_session)
+    I18n.with_locale(:en) do
+      put approve_impersonation_session_path(impersonator_session)
 
-    assert_equal "Request approved", flash[:notice]
-    assert_equal "in_progress", impersonator_session.reload.status
-    assert_redirected_to root_path
+      assert_equal "Request approved", flash[:notice]
+      assert_equal "in_progress", impersonator_session.reload.status
+      assert_redirected_to root_path
+    end
   end
 
   test "regular user can reject an impersonation session" do
@@ -103,10 +109,12 @@ class ImpersonationSessionsControllerTest < ActionDispatch::IntegrationTest
 
     impersonator_session = impersonation_sessions(:in_progress)
 
-    put reject_impersonation_session_path(impersonator_session)
+    I18n.with_locale(:en) do
+      put reject_impersonation_session_path(impersonator_session)
 
-    assert_equal "Request rejected", flash[:notice]
-    assert_equal "rejected", impersonator_session.reload.status
-    assert_redirected_to root_path
+      assert_equal "Request rejected", flash[:notice]
+      assert_equal "rejected", impersonator_session.reload.status
+      assert_redirected_to root_path
+    end
   end
 end

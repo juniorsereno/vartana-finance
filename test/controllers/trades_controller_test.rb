@@ -112,48 +112,52 @@ class TradesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "creates trade buy entry" do
-    assert_difference [ "Entry.count", "Trade.count", "Security.count" ], 1 do
-      post trades_url(account_id: @entry.account_id), params: {
-        model: {
-          type: "buy",
-          date: Date.current,
-          ticker: "NVDA (NASDAQ)",
-          qty: 10,
-          price: 10,
-          currency: "USD"
+    I18n.with_locale(:en) do
+      assert_difference [ "Entry.count", "Trade.count", "Security.count" ], 1 do
+        post trades_url(account_id: @entry.account_id), params: {
+          model: {
+            type: "buy",
+            date: Date.current,
+            ticker: "NVDA (NASDAQ)",
+            qty: 10,
+            price: 10,
+            currency: "USD"
+          }
         }
-      }
+      end
+
+      created_entry = Entry.order(created_at: :desc).first
+
+      assert created_entry.amount.positive?
+      assert created_entry.trade.qty.positive?
+      assert_equal "Entry created", flash[:notice]
+      assert_enqueued_with job: SyncJob
+      assert_redirected_to account_url(created_entry.account)
     end
-
-    created_entry = Entry.order(created_at: :desc).first
-
-    assert created_entry.amount.positive?
-    assert created_entry.trade.qty.positive?
-    assert_equal "Entry created", flash[:notice]
-    assert_enqueued_with job: SyncJob
-    assert_redirected_to account_url(created_entry.account)
   end
 
   test "creates trade sell entry" do
-    assert_difference [ "Entry.count", "Trade.count" ], 1 do
-      post trades_url(account_id: @entry.account_id), params: {
-        model: {
-          type: "sell",
-          ticker: "AAPL (NYSE)",
-          date: Date.current,
-          currency: "USD",
-          qty: 10,
-          price: 10
+    I18n.with_locale(:en) do
+      assert_difference [ "Entry.count", "Trade.count" ], 1 do
+        post trades_url(account_id: @entry.account_id), params: {
+          model: {
+            type: "sell",
+            ticker: "AAPL (NYSE)",
+            date: Date.current,
+            currency: "USD",
+            qty: 10,
+            price: 10
+          }
         }
-      }
+      end
+
+      created_entry = Entry.order(created_at: :desc).first
+
+      assert created_entry.amount.negative?
+      assert created_entry.trade.qty.negative?
+      assert_equal "Entry created", flash[:notice]
+      assert_enqueued_with job: SyncJob
+      assert_redirected_to account_url(created_entry.account)
     end
-
-    created_entry = Entry.order(created_at: :desc).first
-
-    assert created_entry.amount.negative?
-    assert created_entry.trade.qty.negative?
-    assert_equal "Entry created", flash[:notice]
-    assert_enqueued_with job: SyncJob
-    assert_redirected_to account_url(created_entry.account)
   end
 end
