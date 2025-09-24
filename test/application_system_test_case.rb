@@ -3,6 +3,12 @@ require "test_helper"
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   setup do
     Capybara.default_max_wait_time = 5
+    @original_locale = I18n.default_locale
+    I18n.default_locale = :en
+  end
+
+  teardown do
+    I18n.default_locale = @original_locale
   end
 
   driven_by :selenium, using: ENV["CI"].present? ? :headless_chrome : ENV.fetch("E2E_BROWSER", :chrome).to_sym, screen_size: [ 1400, 1400 ]
@@ -14,7 +20,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
       within "form" do
         fill_in "email", with: user.email
         fill_in "password", with: user_password_test
-        click_on "Entrar"
+        click_on "Sign in"
       end
 
       # Trigger Capybara's wait mechanism to avoid timing issues with logins
