@@ -30,14 +30,16 @@ class ChatsTest < ApplicationSystemTestCase
   test "sidebar shows last viewed chat" do
     @user.update!(ai_enabled: true)
 
-    click_on @user.chats.first.title
+    I18n.with_locale(:en) do
+      click_on @user.chats.first.title
 
-    # Page refresh
-    visit root_url
+      # Page refresh
+      visit root_url
 
-    # After page refresh, we're still on the last chat we were viewing
-    within "#chat-container" do
-      assert_selector "h1", text: @user.chats.first.title
+      # After page refresh, we're still on the last chat we were viewing
+      within "#chat-container" do
+        assert_selector "h1", text: @user.chats.first.title
+      end
     end
   end
 

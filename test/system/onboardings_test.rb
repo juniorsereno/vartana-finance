@@ -182,14 +182,16 @@ class OnboardingsTest < ApplicationSystemTestCase
   private
 
     def sign_in(user)
-      visit new_session_path
-      within "form" do
-        fill_in "email", with: user.email
-        fill_in "password", with: user_password_test
-        click_on "Entrar"
-      end
+      I18n.with_locale(:en) do
+        visit new_session_path
+        within "form" do
+          fill_in "email", with: user.email
+          fill_in "password", with: user_password_test
+          click_on "Sign in"
+        end
 
-      # Wait for successful login
-      assert_current_path root_path
+        # Wait for successful login
+        assert_current_path root_path
+      end
     end
 end
