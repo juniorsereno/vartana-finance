@@ -54,13 +54,15 @@ class Settings::HostingsControllerTest < ActionDispatch::IntegrationTest
     account_balance = account.balances.create!(date: Date.current, balance: 1000, currency: "USD")
 
     with_self_hosting do
-      perform_enqueued_jobs(only: DataCacheClearJob) do
-        delete clear_cache_settings_hosting_url
+      I18n.with_locale(:en) do
+        perform_enqueued_jobs(only: DataCacheClearJob) do
+          delete clear_cache_settings_hosting_url
+        end
+
+        assert_redirected_to settings_hosting_url
+        assert_equal I18n.t("settings.hostings.clear_cache.cache_cleared"), flash[:notice]
       end
     end
-
-    assert_redirected_to settings_hosting_url
-    assert_equal I18n.t("settings.hostings.clear_cache.cache_cleared"), flash[:notice]
 
     assert_not ExchangeRate.exists?(exchange_rate.id)
     assert_not Security::Price.exists?(security_price.id)
@@ -72,12 +74,14 @@ class Settings::HostingsControllerTest < ActionDispatch::IntegrationTest
     with_self_hosting do
       sign_in users(:family_member)
 
-      assert_no_enqueued_jobs do
-        delete clear_cache_settings_hosting_url
-      end
+      I18n.with_locale(:en) do
+        assert_no_enqueued_jobs do
+          delete clear_cache_settings_hosting_url
+        end
 
-      assert_redirected_to settings_hosting_url
-      assert_equal I18n.t("settings.hostings.not_authorized"), flash[:alert]
+        assert_redirected_to settings_hosting_url
+        assert_equal I18n.t("settings.hostings.not_authorized"), flash[:alert]
+      end
     end
   end
 end

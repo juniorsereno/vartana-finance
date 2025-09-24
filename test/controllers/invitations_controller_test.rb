@@ -12,39 +12,43 @@ class InvitationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create invitation for member" do
-    assert_difference("Invitation.count") do
-      assert_enqueued_with(job: ActionMailer::MailDeliveryJob) do
-        post invitations_url, params: {
-          invitation: {
-            email: "new@example.com",
-            role: "member"
+    I18n.with_locale(:en) do
+      assert_difference("Invitation.count") do
+        assert_enqueued_with(job: ActionMailer::MailDeliveryJob) do
+          post invitations_url, params: {
+            invitation: {
+              email: "new@example.com",
+              role: "member"
+            }
           }
-        }
+        end
       end
-    end
 
-    invitation = Invitation.order(created_at: :desc).first
-    assert_equal "member", invitation.role
-    assert_equal @admin, invitation.inviter
-    assert_equal "new@example.com", invitation.email
-    assert_redirected_to settings_profile_path
-    assert_equal I18n.t("invitations.create.success"), flash[:notice]
+      invitation = Invitation.order(created_at: :desc).first
+      assert_equal "member", invitation.role
+      assert_equal @admin, invitation.inviter
+      assert_equal "new@example.com", invitation.email
+      assert_redirected_to settings_profile_path
+      assert_equal I18n.t("invitations.create.success"), flash[:notice]
+    end
   end
 
   test "non-admin cannot create invitations" do
     sign_in users(:family_member)
 
-    assert_no_difference("Invitation.count") do
-      post invitations_url, params: {
-        invitation: {
-          email: "new@example.com",
-          role: "admin"
+    I18n.with_locale(:en) do
+      assert_no_difference("Invitation.count") do
+        post invitations_url, params: {
+          invitation: {
+            email: "new@example.com",
+            role: "admin"
+          }
         }
-      }
-    end
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal I18n.t("invitations.create.failure"), flash[:alert]
+      assert_redirected_to settings_profile_path
+      assert_equal I18n.t("invitations.create.failure"), flash[:alert]
+    end
   end
 
   test "admin can create admin invitation" do
@@ -64,17 +68,19 @@ class InvitationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should handle invalid invitation creation" do
-    assert_no_difference("Invitation.count") do
-      post invitations_url, params: {
-        invitation: {
-          email: "",
-          role: "member"
+    I18n.with_locale(:en) do
+      assert_no_difference("Invitation.count") do
+        post invitations_url, params: {
+          invitation: {
+            email: "",
+            role: "member"
+          }
         }
-      }
-    end
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal I18n.t("invitations.create.failure"), flash[:alert]
+      assert_redirected_to settings_profile_path
+      assert_equal I18n.t("invitations.create.failure"), flash[:alert]
+    end
   end
 
   test "should accept invitation and redirect to registration" do
@@ -88,23 +94,27 @@ class InvitationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can remove pending invitation" do
-    assert_difference("Invitation.count", -1) do
-      delete invitation_url(@invitation)
-    end
+    I18n.with_locale(:en) do
+      assert_difference("Invitation.count", -1) do
+        delete invitation_url(@invitation)
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal I18n.t("invitations.destroy.success"), flash[:notice]
+      assert_redirected_to settings_profile_path
+      assert_equal I18n.t("invitations.destroy.success"), flash[:notice]
+    end
   end
 
   test "non-admin cannot remove invitations" do
     sign_in users(:family_member)
 
-    assert_no_difference("Invitation.count") do
-      delete invitation_url(@invitation)
-    end
+    I18n.with_locale(:en) do
+      assert_no_difference("Invitation.count") do
+        delete invitation_url(@invitation)
+      end
 
-    assert_redirected_to settings_profile_path
-    assert_equal I18n.t("invitations.destroy.not_authorized"), flash[:alert]
+      assert_redirected_to settings_profile_path
+      assert_equal I18n.t("invitations.destroy.not_authorized"), flash[:alert]
+    end
   end
 
   test "should handle invalid invitation removal" do
