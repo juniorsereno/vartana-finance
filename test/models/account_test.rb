@@ -28,7 +28,7 @@ class AccountTest < ActiveSupport::TestCase
 
     # Test with nil subtype
     account.update!(subtype: nil)
-    assert_equal "Investments", account.short_subtype_label
-    assert_equal "Investments", account.long_subtype_label
+    assert_equal "Investimentos", account.short_subtype_label
+    assert_equal "Investimentos", account.long_subtype_label
   end
 end
