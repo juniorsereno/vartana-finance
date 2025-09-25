@@ -3,6 +3,7 @@ pt-BR:
   budgets:
     budget_donut:
       spent: "Gasto"
+      new_budget: "Novo orçamento"
     budget_header:
       today: "Hoje"
     budget_nav:
@@ -16,3 +17,11 @@ pt-BR:
     show:
       budgeted: "Orçado"
       actual: "Real"
+      categories: "Categorias"
+      edit: "Editar"
+    budget_categories:
+      categories: "Categorias"
+      amount: "Valor"
+    actuals_summary:
+      income: "Receita"
+      expenses: "Despesas"

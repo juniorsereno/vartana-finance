@@ -39,6 +39,12 @@ pt-BR:
       settings: Configurações
       tags_label: Tags
       uncategorized: "(sem categoria)"
+      expense: Despesa
+      income: Receita
+      one_time_income: Receita única
+      one_time_expense: Despesa única
+      one_time_description: Transações únicas serão excluídas de certos cálculos orçamentários e relatórios para ajudá-lo a ver o que é realmente importante.
+      transfer_or_debt_payment: Transferência ou Pagamento de Dívida?
     header:
       edit_categories: Editar categorias
       edit_imports: Editar importações
@@ -53,6 +59,10 @@ pt-BR:
       transaction: transação
       transactions: transações
       import: Importar
+    summary:
+      total_transactions: Total de transações
+      income: Receita
+      expenses: Despesas
     searches:
       filters:
         amount_filter:

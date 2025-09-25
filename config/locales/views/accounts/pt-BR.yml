@@ -25,6 +25,11 @@ pt-BR:
       sync: Sincronizar tudo
     sidebar:
       new_account: Nova conta
+      assets: Ativos
+      debts: Dívidas
+      all: Todos
+      new_asset: Novo ativo
+      new_debt: Nova dívida
     new:
       import_accounts: Importar contas
       method_selector:

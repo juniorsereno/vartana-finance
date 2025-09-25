@@ -15,7 +15,7 @@ class Crypto < ApplicationRecord
     end
 
     def display_name
-      "Crypto"
+      I18n.t("accountable.types.crypto.display_name")
     end
   end
 end

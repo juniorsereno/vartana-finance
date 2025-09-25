@@ -11,6 +11,11 @@ pt-BR:
       submit: Adicionar transação
       ticker_placeholder: PETR4
       type: Tipo
+      buy: Comprar
+      sell: Vender
+      deposit: Depósito
+      withdrawal: Saque
+      interest: Juros
     header:
       buy: Comprar
       current_market_price_label: Preço Atual de Mercado

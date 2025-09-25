@@ -16,3 +16,7 @@ pt-BR:
       total: Saldo da carteira
       total_value_tooltip: O saldo total da carteira é a soma do dinheiro disponível na corretora
         (disponível para negociação) e o valor de mercado atual de seus investimentos.
+    chart:
+      total_value: Valor total
+      holdings: Investimentos
+      cash: Dinheiro

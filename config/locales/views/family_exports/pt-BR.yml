@@ -1,0 +1,23 @@
+---
+pt-BR:
+  family_exports:
+    new:
+      title: Exportar seus dados
+      whats_included: "O que está incluído:"
+      all_accounts_and_balances: Todas as contas e saldos
+      transaction_history: Histórico de transações
+      investment_trades: Negociações de investimentos
+      categories_and_tags: Categorias e tags
+      whats_not_included: "O que NÃO está incluído:"
+      profile_images: Imagens de perfil
+      plaid_connections: Conexões do Plaid
+      api_keys: Chaves de API
+      export_button: Exportar dados
+      cancel: Cancelar
+      note: "Nota:"
+      note_description: Esta exportação inclui todos os seus dados, mas apenas alguns dos dados podem ser importados de volta para o Maybe através do recurso de importação CSV. Suportamos importações de contas, transações (com categoria e tags) e negociações. Outros dados da conta não podem ser importados e são apenas para seus registros.
+    list:
+      export_from: Exportação de %{date}
+      exporting: Exportando...
+      download: Baixar
+      failed: Falhou
