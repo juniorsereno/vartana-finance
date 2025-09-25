@@ -28,6 +28,10 @@ class Property < ApplicationRecord
     def classification
       "asset"
     end
+
+    def display_name
+      I18n.t("accountable.types.property.display_name")
+    end
   end
 
   def area

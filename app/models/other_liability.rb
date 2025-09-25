@@ -13,5 +13,9 @@ class OtherLiability < ApplicationRecord
     def classification
       "liability"
     end
+
+    def display_name
+      I18n.t("accountable.types.other_liability.display_name")
+    end
   end
 end

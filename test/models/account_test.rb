@@ -26,9 +26,10 @@ class AccountTest < ActiveSupport::TestCase
     assert_equal "HSA", account.short_subtype_label
     assert_equal "Health Savings Account", account.long_subtype_label
 
-    # Test with nil subtype
+    # Test with nil subtype - should use the display_name from the accountable class
     account.update!(subtype: nil)
-    assert_equal "Investimentos", account.short_subtype_label
-    assert_equal "Investimentos", account.long_subtype_label
+    # Since we're using I18n.t() in the display_name method, it should return the translated name
+    assert_equal I18n.t("accountable.types.investment.display_name"), account.short_subtype_label
+    assert_equal I18n.t("accountable.types.investment.display_name"), account.long_subtype_label
   end
 end

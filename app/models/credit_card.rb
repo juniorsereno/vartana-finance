@@ -17,6 +17,10 @@ class CreditCard < ApplicationRecord
     def classification
       "liability"
     end
+
+    def display_name
+      I18n.t("accountable.types.credit_card.display_name")
+    end
   end
 
   def available_credit_money

@@ -56,9 +56,19 @@ class BalanceSheetTest < ActiveSupport::TestCase
     asset_groups = BalanceSheet.new(@family).assets.account_groups
 
     assert_equal 3, asset_groups.size
-    assert_equal 1000 + 2000, asset_groups.find { |ag| ag.name == "Dinheiro" }.total
-    assert_equal 3000, asset_groups.find { |ag| ag.name == "Investimentos" }.total
-    assert_equal 5000, asset_groups.find { |ag| ag.name == "Outros Ativos" }.total
+
+    # Find groups by their display names (which should be translated)
+    depository_group = asset_groups.find { |ag| ag.name == Depository.display_name }
+    investment_group = asset_groups.find { |ag| ag.name == Investment.display_name }
+    other_asset_group = asset_groups.find { |ag| ag.name == OtherAsset.display_name }
+
+    assert_not_nil depository_group, "Could not find depository group. Available groups: #{asset_groups.map(&:name)}"
+    assert_not_nil investment_group, "Could not find investment group. Available groups: #{asset_groups.map(&:name)}"
+    assert_not_nil other_asset_group, "Could not find other asset group. Available groups: #{asset_groups.map(&:name)}"
+
+    assert_equal 1000 + 2000, depository_group.total
+    assert_equal 3000, investment_group.total
+    assert_equal 5000, other_asset_group.total
   end
 
   test "calculates liability group totals" do
@@ -71,8 +81,16 @@ class BalanceSheetTest < ActiveSupport::TestCase
     liability_groups = BalanceSheet.new(@family).liabilities.account_groups
 
     assert_equal 2, liability_groups.size
-    assert_equal 1000 + 2000, liability_groups.find { |ag| ag.name == "Cartões de Crédito" }.total
-    assert_equal 3000 + 5000, liability_groups.find { |ag| ag.name == "Outros Passivos" }.total
+
+    # Find groups by their display names (which should be translated)
+    credit_card_group = liability_groups.find { |ag| ag.name == CreditCard.display_name }
+    other_liability_group = liability_groups.find { |ag| ag.name == OtherLiability.display_name }
+
+    assert_not_nil credit_card_group, "Could not find credit card group. Available groups: #{liability_groups.map(&:name)}"
+    assert_not_nil other_liability_group, "Could not find other liability group. Available groups: #{liability_groups.map(&:name)}"
+
+    assert_equal 1000 + 2000, credit_card_group.total
+    assert_equal 3000 + 5000, other_liability_group.total
   end
 
   private

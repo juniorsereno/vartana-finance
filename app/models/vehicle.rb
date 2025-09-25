@@ -27,6 +27,10 @@ class Vehicle < ApplicationRecord
     def classification
       "asset"
     end
+
+    def display_name
+      I18n.t("accountable.types.vehicle.display_name")
+    end
   end
 
   private

@@ -13,5 +13,9 @@ class OtherAsset < ApplicationRecord
     def classification
       "asset"
     end
+
+    def display_name
+      I18n.t("accountable.types.other_asset.display_name")
+    end
   end
 end

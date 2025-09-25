@@ -40,5 +40,9 @@ class Loan < ApplicationRecord
     def classification
       "liability"
     end
+
+    def display_name
+      I18n.t("accountable.types.loan.display_name")
+    end
   end
 end

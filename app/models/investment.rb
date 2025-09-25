@@ -27,5 +27,9 @@ class Investment < ApplicationRecord
     def icon
       "line-chart"
     end
+
+    def display_name
+      I18n.t("accountable.types.investment.display_name")
+    end
   end
 end
