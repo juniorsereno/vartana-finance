@@ -23,6 +23,8 @@ pt-BR:
         other_accounts: Outras contas
       new_account: Nova conta
       sync: Sincronizar tudo
+    sidebar:
+      new_account: Nova conta
     new:
       import_accounts: Importar contas
       method_selector:
@@ -48,6 +50,9 @@ pt-BR:
         owed: Valor devido
       menu:
         confirm_accept: Excluir "%{name}"
+        edit: Editar
+        import_transactions: Importar transações
+        delete_account: Excluir conta
         confirm_body_html: "<p>Ao excluir esta conta, você apagará seu histórico de valor,
           afetando vários aspectos de sua conta geral. Esta ação terá um impacto direto
           nos cálculos de seu patrimônio líquido e nos gráficos da conta.</p><br />

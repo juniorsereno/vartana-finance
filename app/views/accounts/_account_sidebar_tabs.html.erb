@@ -71,7 +71,7 @@
     <% tabs.with_panel(tab_id: "all") do %>
       <div class="space-y-2">
         <%= render DS::Link.new(
-            text: "New account",
+            text: t("accounts.sidebar.new_account"),
             variant: "ghost",
             full_width: true,
             href: new_account_path(step: "method_select"),

@@ -4,6 +4,15 @@ pt-BR:
     changelog:
       title: Novidades
     dashboard:
+      welcome_back: "Bem-vindo de volta, %{name}"
+      finances_overview: "Aqui está o que está acontecendo com suas finanças"
+      new_button: "Novo"
+      shutdown_notice:
+        title: "Tomamos a difícil decisão de encerrar a versão hospedada do Maybe. Aqui está o que acontecerá a seguir:"
+        read_more: "Leia por que estamos fazendo isso aqui"
+        refund_notice: "Você será reembolsado integralmente."
+        export_notice: "Você tem até 31 de julho de 2025 para exportar seus dados. Você pode fazer isso"
+        export_link: "aqui"
       net_worth_chart:
         data_not_available: Dados não disponíveis para o período selecionado
         title: Patrimônio Líquido
@@ -11,3 +20,7 @@ pt-BR:
         new_account: Nova conta
         no_account_subtitle: Como nenhuma conta foi adicionada, não há dados para exibir. Adicione suas primeiras contas para começar a visualizar os dados do painel.
         no_account_title: Nenhuma conta ainda
+      no_accounts_placeholder:
+        title: "Nenhuma conta ainda"
+        subtitle: "Adicione contas para exibir dados de patrimônio líquido"
+        add_account: "Adicionar conta"

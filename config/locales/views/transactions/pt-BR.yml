@@ -45,9 +45,14 @@ pt-BR:
       edit_merchants: Editar comerciantes
       edit_tags: Editar tags
       import: Importar
+      new_rule: Nova regra
+      edit_rules: Editar regras
     index:
+      title: Transações
+      new_transaction: Nova transação
       transaction: transação
       transactions: transações
+      import: Importar
     searches:
       filters:
         amount_filter:

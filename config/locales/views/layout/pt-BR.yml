@@ -7,6 +7,11 @@ pt-BR:
       sign_in: Entrar
       sign_up: Criar conta
       your_account: Sua conta
+    navigation:
+      home: "Início"
+      transactions: "Transações"
+      budgets: "Orçamentos"
+      assistant: "Assistente"
     shared:
       footer:
         privacy_policy: Política de Privacidade

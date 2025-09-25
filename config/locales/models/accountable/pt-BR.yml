@@ -1,0 +1,92 @@
+---
+pt-BR:
+  accountable:
+    types:
+      depository:
+        display_name: "Dinheiro"
+        subtypes:
+          checking:
+            short: "Corrente"
+            long: "Conta Corrente"
+          savings:
+            short: "Poupança"
+            long: "Conta Poupança"
+          hsa:
+            short: "HSA"
+            long: "Conta de Poupança de Saúde"
+          cd:
+            short: "CDB"
+            long: "Certificado de Depósito Bancário"
+          money_market:
+            short: "MM"
+            long: "Mercado Monetário"
+      investment:
+        display_name: "Investimentos"
+        subtypes:
+          brokerage:
+            short: "Corretora"
+            long: "Conta de Corretora"
+          pension:
+            short: "Pensão"
+            long: "Plano de Pensão"
+          retirement:
+            short: "Aposentadoria"
+            long: "Conta de Aposentadoria"
+          401k:
+            short: "401(k)"
+            long: "Plano 401(k)"
+          roth_401k:
+            short: "Roth 401(k)"
+            long: "Plano Roth 401(k)"
+          529_plan:
+            short: "Plano 529"
+            long: "Plano de Poupança Educacional 529"
+          hsa:
+            short: "HSA"
+            long: "Conta de Poupança de Saúde"
+          mutual_fund:
+            short: "Fundo Mútuo"
+            long: "Fundo de Investimento Mútuo"
+          ira:
+            short: "IRA"
+            long: "Conta Individual de Aposentadoria"
+          roth_ira:
+            short: "Roth IRA"
+            long: "Conta Roth IRA"
+          angel:
+            short: "Angel"
+            long: "Investimento Angel"
+      credit_card:
+        display_name: "Cartões de Crédito"
+        subtypes:
+          credit_card:
+            short: "Cartão de Crédito"
+            long: "Cartão de Crédito"
+      loan:
+        display_name: "Empréstimos"
+        subtypes:
+          mortgage:
+            short: "Hipoteca"
+            long: "Financiamento Imobiliário"
+          student:
+            short: "Estudantil"
+            long: "Empréstimo Estudantil"
+          auto:
+            short: "Veicular"
+            long: "Financiamento de Veículo"
+          other:
+            short: "Outro"
+            long: "Outro Empréstimo"
+      property:
+        display_name: "Imóveis"
+      vehicle:
+        display_name: "Veículos"
+      crypto:
+        display_name: "Criptomoedas"
+      other_asset:
+        display_name: "Outros Ativos"
+      other_liability:
+        display_name: "Outros Passivos"
+    balance_display_names:
+      account_value: "valor da conta"
+      opening_balance: "saldo inicial"

@@ -6,6 +6,10 @@ pt-BR:
       body_html: "<p>Você não poderá desfazer esta decisão</p>"
       cancel: Cancelar
       title: Você tem certeza?
+    confirm_dialog:
+      are_you_sure: "Tem certeza?"
+      cannot_be_undone: "Esta ação não pode ser desfeita."
+      confirm: "Confirmar"
     money_field:
       label: Valor
     syncing_notice:
