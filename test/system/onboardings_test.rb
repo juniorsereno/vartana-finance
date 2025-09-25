@@ -187,7 +187,7 @@ class OnboardingsTest < ApplicationSystemTestCase
         within "form" do
           fill_in "email", with: user.email
           fill_in "password", with: user_password_test
-          click_on "Sign in"
+          click_on "Log in"  # Changed from "Sign in" to "Log in" to match the translation key
         end
 
         # Wait for successful login

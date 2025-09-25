@@ -8,51 +8,45 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
   end
 
   test "should show no API key state when user has no active keys" do
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
+    visit settings_api_key_path
 
-      assert_text "Create Your API Key"
-      assert_text "Get programmatic access to your Maybe data"
-      assert_text "Access your account data programmatically"
-      assert_link "Create API Key", href: new_settings_api_key_path
-    end
+    assert_text "Crie Sua Chave de API"
+    assert_text "Obtenha acesso programático aos seus dados do Maybe"
+    assert_text "Acessar os dados da sua conta programaticamente"
+    assert_link "Criar Chave de API", href: new_settings_api_key_path
   end
 
   test "should navigate to create new API key form" do
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
-      click_link "Create API Key"
+    visit settings_api_key_path
+    click_link "Criar Chave de API"
 
-      assert_current_path new_settings_api_key_path
-      assert_text "Create New API Key"
-      assert_field "API Key Name"
-      assert_text "Read Only"
-      assert_text "Read/Write"
-    end
+    assert_current_path new_settings_api_key_path
+    assert_text "Criar Nova Chave de API"
+    assert_field "Nome da Chave de API"
+    assert_text "Apenas Leitura"
+    assert_text "Leitura/Escrita"
   end
 
   test "should create a new API key with selected scopes" do
-    I18n.with_locale(:en) do
-      visit new_settings_api_key_path
+    visit new_settings_api_key_path
 
-      fill_in "API Key Name", with: "Test Integration Key"
-      choose "Read/Write"
+    fill_in "Nome da Chave de API", with: "Test Integration Key"
+    choose "Leitura/Escrita"
 
-      click_button "Create API Key"
+    click_button "Criar Chave de API"
 
-      # Should redirect to show page with the API key details
-      assert_current_path settings_api_key_path
-      assert_text "Test Integration Key"
-      assert_text "Your API Key"
+    # Should redirect to show page with the API key details
+    assert_current_path settings_api_key_path
+    assert_text "Test Integration Key"
+    assert_text "Sua Chave de API"
 
-      # Should show the actual API key value
-      api_key_display = find("#api-key-display")
-      assert api_key_display.text.length > 30 # Should be a long hex string
+    # Should show the actual API key value
+    api_key_display = find("#api-key-display")
+    assert api_key_display.text.length > 30 # Should be a long hex string
 
-      # Should show copy buttons
-      assert_button "Copy API Key"
-      assert_link "Create New Key"
-    end
+    # Should show copy buttons
+    assert_button "Copiar Chave de API"
+    assert_link "Criar Nova Chave"
   end
 
   test "should show current API key details after creation" do
@@ -64,17 +58,15 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
       scopes: [ "read_write" ]
     )
 
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
+    visit settings_api_key_path
 
-      assert_text "Your API Key"
-      assert_text "Production API Key"
-      assert_text "Active"
-      assert_text "Read/Write"
-      assert_text "Never used"
-      assert_link "Create New Key"
-      assert_button "Revoke Key"
-    end
+    assert_text "Sua Chave de API"
+    assert_text "Production API Key"
+    assert_text "Ativa"
+    assert_text "Leitura/Escrita"
+    assert_text "Nunca usada"
+    assert_link "Criar Nova Chave"
+    assert_button "Revogar Chave"
   end
 
   test "should show usage instructions and example curl command" do
@@ -85,13 +77,11 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
       scopes: [ "read" ]
     )
 
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
+    visit settings_api_key_path
 
-      assert_text "How to use your API key"
-      assert_text "curl -H \"X-Api-Key: test_key_123\""
-      assert_text "/api/v1/accounts"
-    end
+    assert_text "Como usar sua chave de API"
+    assert_text "curl -H \"X-Api-Key: test_key_123\""
+    assert_text "/api/v1/accounts"
   end
 
   test "should allow regenerating API key" do
@@ -102,21 +92,19 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
       scopes: [ "read" ]
     )
 
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
-      click_link "Create New Key"
+    visit settings_api_key_path
+    click_link "Criar Nova Chave"
 
-      # Should be on the new API key form
-      assert_text "Create New API Key"
+    # Should be on the new API key form
+    assert_text "Criar Nova Chave de API"
 
-      fill_in "API Key Name", with: "New API Key"
-      choose "Read Only"
-      click_button "Create API Key"
+    fill_in "Nome da Chave de API", with: "New API Key"
+    choose "Apenas Leitura"
+    click_button "Criar Chave de API"
 
-      # Should redirect to show page with new key
-      assert_text "New API Key"
-      assert_text "Your API Key"
-    end
+    # Should redirect to show page with new key
+    assert_text "New API Key"
+    assert_text "Sua Chave de API"
 
     # Old key should be revoked
     api_key.reload
@@ -131,24 +119,22 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
       scopes: [ "read" ]
     )
 
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
+    visit settings_api_key_path
 
-      # Click the revoke button to open the modal
-      click_button "Revoke Key"
+    # Click the revoke button to open the modal
+    click_button "Revogar Chave"
 
-      # Wait for the dialog and then confirm
-      assert_selector "#confirm-dialog", visible: true
-      within "#confirm-dialog" do
-        click_button "Confirm"
-      end
-
-      # Wait for redirect after revoke
-      assert_no_selector "#confirm-dialog"
-
-      assert_text "Create Your API Key"
-      assert_text "Get programmatic access to your Maybe data"
+    # Wait for the dialog and then confirm
+    assert_selector "#confirm-dialog", visible: true
+    within "#confirm-dialog" do
+      click_button "Confirm"
     end
+
+    # Wait for redirect after revoke
+    assert_no_selector "#confirm-dialog"
+
+    assert_text "Crie Sua Chave de API"
+    assert_text "Obtenha acesso programático aos seus dados do Maybe"
 
     # Key should be revoked in the database
     api_key.reload
@@ -177,18 +163,16 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
   end
 
   test "should validate API key name is required" do
-    I18n.with_locale(:en) do
-      visit new_settings_api_key_path
+    visit new_settings_api_key_path
 
-      # Try to submit without name
-      choose "Read Only"
-      click_button "Create API Key"
+    # Try to submit without name
+    choose "Apenas Leitura"
+    click_button "Criar Chave de API"
 
-      # Should stay on form with validation error
-      assert_current_path new_settings_api_key_path
-      assert_field "API Key Name" # Form should still be visible
-      # The form might not show the validation error inline, but should remain on the form
-    end
+    # Should stay on form with validation error
+    assert_current_path new_settings_api_key_path
+    assert_field "Nome da Chave de API" # Form should still be visible
+    # The form might not show the validation error inline, but should remain on the form
   end
 
   test "should show last used timestamp when API key has been used" do
@@ -200,12 +184,10 @@ class Settings::ApiKeysTest < ApplicationSystemTestCase
       last_used_at: 2.hours.ago
     )
 
-    I18n.with_locale(:en) do
-      visit settings_api_key_path
+    visit settings_api_key_path
 
-      assert_text "2 hours ago"
-      assert_no_text "Never used"
-    end
+    assert_text "about 2 hours"
+    assert_no_text "Nunca usada"
   end
 
   test "should show expiration date when API key has expiration" do
